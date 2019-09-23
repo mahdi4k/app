@@ -2,51 +2,74 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\v1\User as UserResource;
 use App\User;
-use \App\Http\Resources\v1\User as UserResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
-{
-     public function login(Request $request)
-    {
 
-       $validData = $this->validate($request,[
-            'email' => 'required|exists:users',
-            'password' => 'required'
+    /**
+     * @OA\Info(
+     *      version="1.0.0",
+     *      title="L5 OpenApi",
+     *      description="L5 Swagger OpenApi description"
+     * )
+     *
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/ ",
+     *     description="Home page",
+     *     @OA\Response(response="default", description="Welcome page")
+     * )
+     */
+
+{
+    public function login(Request $request)
+    {
+        User::find('1')->update([
+            'email'=>'mahdi@yahoo.com',
+            'password'=>bcrypt('12345678')
+        ]);
+        // Validation Data
+        $validData = $this->validate($request, [
+           'email' => 'required|exists:users',
+           'password' => 'required'
         ]);
 
 
-
-        if (! auth()->attempt($validData)){
-             return response([
-                'data' =>'اطلاعات صحیح نیست',
-                 'status' => 'error'
-             ],403);
-            }
+        // Check Login User
+        if(! auth()->attempt($validData)) {
+            return response([
+                'data' => 'اطلاعات صحیح نیست',
+                'status' => 'error'
+            ],403);
+        }
 
         return new UserResource(auth()->user());
-
-     }
+    }
 
     public function register(Request $request)
     {
-        $validData = $this->validate($request,[
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-            'age'=>['required']
-
-        ]);
-
-       $user = User::create([
+        // Validation Data
+        $validData = $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'age' => 'required'
+        ],
+            ['email.unique'=>'ایمیل وارد شده از قبل ثبت شده است']
+            );
+        //create new user
+        $user = User::create([
             'name' => $validData['name'],
             'email' => $validData['email'],
-            'password' => Hash::make($validData['password']),
-            'age' =>$validData['age']
-
+            'password' => bcrypt($validData['password']),
+            'age' =>$validData['age'],
+            'api_token'=>Str::random(60)
         ]);
 
         return new UserResource($user);

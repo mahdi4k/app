@@ -23,7 +23,8 @@ class UserSeeder extends Seeder
                     'age'=>$faker->randomNumber(2),
                     'gender'=>$faker->randomElement(['male','female']),
                     'created_at'=>\Carbon\Carbon::now(),
-                    'updated_at'=>\Carbon\Carbon::now()
+                    'updated_at'=>\Carbon\Carbon::now(),
+                    'api_token'=>Str::random('60')
                 ]);
             }
 

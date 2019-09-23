@@ -7,6 +7,19 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+    // app/Http/Controllers/Car.php
+    /**
+     * @SWG\Get(
+     *   path="/sample",
+     *   summary="Sample",
+     *   @SWG\Response(response=200, description="successful operation")
+     * )
+     *
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     /**
      * Display a listing of the resource.
      *
