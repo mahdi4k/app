@@ -12,7 +12,7 @@ $("#tile-1 .nav-tabs a").click(function (e) {
 var actWidth = $("#tile-1 .nav-tabs").find(".active").parent("li").width();
  var finalFirstWidth = actWidth - Number(150);
 var actPosition = $("#tile-1 .nav-tabs .active").position();
-$("#tile-1 .slider").css({"left": '78px', "width": finalFirstWidth});
+$("#tile-1 .slider").css({"right": '78px', "width": finalFirstWidth});
 
 //sibling sing in sing up
 $(document).ready(function () {
