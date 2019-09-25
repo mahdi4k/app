@@ -10,6 +10,19 @@ body{
     direction: rtl;
     background: linear-gradient(to right, #f7f8f8, #78bba899)
 }
+.header{
+    background: linear-gradient(to right, #4d459661, #b7b7bbe0, #f9e0e09e);
+     margin-bottom: 20px;
+    height: 66px;
+    box-shadow: 1px 1px 4px 2px #757575;
+}
+.header p{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    margin-right: 17px;
+    color: white;
+}
 .btn-custom{
     background: #02b3e4;
     color: white;

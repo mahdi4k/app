@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="{{url('css/app.css')}}">
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('css/font-awesome.min.css')}}">
-    <title>Document</title>
+    <title>سامانه مدیریت</title>
 </head>
 <body>
-<div style="height: 100vh" class="d-flex align-items-center ">
+<header>
+    <div class="d-flex w-100 header">
+        <img class="mr-4 mt-1 align-items-center" width="60" height="60" src="{{url('img/logoHeader.png')}}">
+        <p>سامانه مدیریت خودرو</p>
+    </div>
+</header>
+<div   class="d-flex align-items-center ">
     <div style="box-shadow: 2px 1px 5px 2px #98949459, -2px 1px 4px 1px #67676717;;height: 500px"
          class="container boxStyle">
         <div class="row">
@@ -211,7 +217,7 @@
             <div class="col-md-4 mx-auto detail">
 
                 <img class="detailImg" src="{{url('img/LOGO.png')}}">
-                <img style="width: 500px;position: absolute;left: 9px;opacity: .2;"  src="{{url('img/social.svg')}}">
+                <img style="width: 500px;position: absolute;left: 9px;opacity: .2;"  src="{{url('img/social1.svg')}}">
                 <div class="detailList">
                     <h1 class="mb-0">سامانه لورم</h1>
                     <ul class="list-group">
