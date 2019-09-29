@@ -22,7 +22,7 @@ class fuelCarSeeder extends Seeder
                 'currentKilo'=>$faker->randomNumber(6),
                 'paymentFuel'=>$faker->randomNumber(3),
                 'fuelImage'=>$faker->image(),
-
+                'created_at' => \Carbon\Carbon::today()->toDateString()
 
             ]);
         }

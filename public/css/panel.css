@@ -1,0 +1,136 @@
+@font-face {
+    font-family: iransansMed;
+    font-style: normal;
+    src: url(../fonts/ttf/IRANSansWeb_Medium.ttf);
+}
+
+@font-face {
+    font-family: iransansBold;
+    font-style: normal;
+    src: url(../fonts/ttf/IRANSansWeb_Bold.ttf);
+}
+
+@font-face {
+    font-family: iransansLight;
+    font-style: normal;
+    src: url(../fonts/ttf/IRANSansWeb_Light.ttf);
+}
+
+html {
+    height: 100%;
+    text-decoration: none;
+}
+
+body {
+    text-decoration: none;
+    height: 100%;
+    direction: rtl;
+    text-align: right;
+    background-color: white;
+    font-family: IRANSansMed, serif;
+}
+
+.btn-custom {
+    background: #02b3e4;
+    color: white !important;
+    font-size: 10pt;
+    border-radius: 4px !important;
+    box-shadow: 1px 1px 11px 2px #efe4e4 !important;
+    border: 1px solid #fff;
+    transition: all 500ms;
+}
+
+.btn-custom:hover {
+    transform: translate3d(0px, -2px, 2px);
+    color: white;
+}
+
+.panelSide {
+    border-left: 1px solid #eaeaea;
+}
+
+.panelSide p {
+    font-size: 17pt;
+    padding-right: 10px;
+    padding-top: 25px;
+    font-family: iransansBold;
+    padding-bottom: 12px;
+    display: inline-block;
+}
+
+.panelSide ul li {
+    border: none;
+    line-height: 86px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: inline-block;
+    width: 100%;
+    white-space: pre;
+
+}
+
+.panelSide ul li a {
+    color: #777A87;
+    text-decoration: none;
+    transition: all .2s;
+    padding-left: 25px;
+    white-space: normal;
+}
+
+.panelSide ul li a:hover {
+    color: tomato;
+}
+
+.panelSide ul li:hover i {
+    color: tomato;
+}
+
+.panelSide ul li i {
+    margin-left: 10px;
+    font-size: 15pt;
+    transition: all .2s;
+}
+
+/*card*/
+
+.card-custom {
+    box-shadow: 1px 1px 14px 3px #d7dcdc52;
+    border-radius: 8px;
+}
+
+.card-custom a {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.cars {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cars a {
+    padding: 5px;
+    color: #4e555b;
+    box-shadow: 1px 1px 14px 3px #d7dcdc52;
+    border-radius: 9px;
+    margin-left: 8px;
+    transition: all .2s;
+    text-decoration: none;
+    border: none;
+}
+.cars a:hover{
+    color: tomato;
+    transform: translate3d(0px, -2px, 2px);
+}
+.highcharts-root{
+    font-family: iransansLight !important;
+}
+@media (min-width: 1600px) {
+    .card {
+        width: 30rem !important;
+        margin-top: 50px;
+    }
+}

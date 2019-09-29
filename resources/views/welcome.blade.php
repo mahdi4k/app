@@ -17,7 +17,7 @@
         <p>سامانه مدیریت خودرو</p>
     </div>
 </header>
-<div   class="d-flex align-items-center ">
+<div class="d-flex align-items-center ">
     <div style="box-shadow: 2px 1px 5px 2px #98949459, -2px 1px 4px 1px #67676717;;height: 500px"
          class="container boxStyle">
         <div class="row">
@@ -47,7 +47,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane fade    " id="register" role="tabpanel" aria-labelledby="home-tab">
-                            <form class="mt-5" method="POST" action="{{ route('register') }}">
+                            <form id="registerUser" class="mt-5" method="POST" action="{{ route('register') }}">
                                 @csrf
 
                                 <div class="form-row">
@@ -86,7 +86,7 @@
                                         <input id="password" type="password"
                                                class="form-control @error('password') is-invalid @enderror"
                                                name="password" required autocomplete="new-password">
-                                        <label style="width: 50px;" for="email">رمز عبور</label>
+                                        <label style="width: 50px;" for="password">رمز عبور</label>
                                         <div class="line"></div>
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -98,8 +98,8 @@
                                     <div class="col-md-6 form-group">
                                         <input id="age" type="number"
                                                class="form-control @error('age') is-invalid @enderror"
-                                               name="password" required autocomplete="age">
-                                        <label for="email">سن</label>
+                                               name="age" required autocomplete="age">
+                                        <label for="age">سن</label>
                                         <div class="line"></div>
                                         @error('age')
                                         <span class="invalid-feedback " role="alert">
@@ -107,7 +107,10 @@
                                          </span>
                                         @enderror
                                     </div>
+
                                 </div>
+
+
                                 <p class="pull-right">جنسیت</p>
                                 <div class="d-inline-flex w-100">
                                     <div class="custom-control custom-radio">
@@ -150,22 +153,22 @@
                                         <div class="line"></div>
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                    </span>
+                                                                                <strong>{{ $message }}</strong>
+                                                                                </span>
                                         @enderror
                                     </div>
 
 
                                     <div class="col-md-6  form-group">
-                                        <input id="password" type="password"
+                                        <input   type="password"
                                                class="form-control @error('password') is-invalid @enderror"
                                                name="password" required autocomplete="current-password">
                                         <label style="width: 53px;" for="password">رمز عبور</label>
                                         <div class="line"></div>
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
                                         @enderror
                                     </div>
 
@@ -187,7 +190,8 @@
                                     <div class="custom-control   custom-checkbox ml-5  mt-3  ">
                                         <input type="checkbox" class="custom-control-input mb-0   " id="customCheck"
                                                name="remember">
-                                        <label class="custom-control-label d-inline" for="customCheck">مرا به خاطر بسپار</label>
+                                        <label class="custom-control-label d-inline" for="customCheck">مرا به خاطر
+                                            بسپار</label>
 
                                     </div>
                                     <button type="submit" class="btn btn-custom-login mr-5 mt-1">
@@ -199,9 +203,13 @@
 
 
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                رمزعبور خود را فراموش کرده اید؟
+                                            <a href="{{ route('password.request') }}">
+
                                             </a>
+                                            <button type="button" class="btn btn-link" data-toggle="modal"
+                                                    data-target="#exampleModal">
+                                                رمزعبور خود را فراموش کرده اید؟
+                                            </button>
                                         @endif
                                     </div>
                                 </div>
@@ -217,7 +225,7 @@
             <div class="col-md-4 mx-auto detail">
 
                 <img class="detailImg" src="{{url('img/LOGO.png')}}">
-                <img style="width: 500px;position: absolute;left: 9px;opacity: .2;"  src="{{url('img/social1.svg')}}">
+                <img style="width: 500px;position: absolute;left: 9px;opacity: .2;" src="{{url('img/social1.svg')}}">
                 <div class="detailList">
                     <h1 class="mb-0">سامانه لورم</h1>
                     <ul class="list-group">
@@ -226,14 +234,107 @@
                         <li class="list-group-item">لورم اپسیوم متن ساختگی لورم لورم</li>
                         <li class="list-group-item">لورم اپسیوم متن ساختگی لورم لورم</li>
                         <li class="list-group-item">لورم اپسیوم متن ساختگی لورم لورم</li>
-
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">لطفا ایمیلی که با آن ثبت نام کرده اید وارد کنید</p>
+                <form id="submitEmailReset" method="POST" action="{{ route('password.email') }}">
+                    @csrf
+
+                    <div class="col-md-8 form-group justify-content-center mx-auto">
+                        <input id="resetEmail" type="email"
+                               class="form-control @error('emailreset') is-invalid @enderror" name="email"
+                               value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <label for="resetEmail">ایمیل</label>
+                        <div class="line"></div>
+
+                    </div>
+
+                    <div id="sendResetEmail"></div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4 mx-auto ">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                ارسال
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="{{url('js/sweetalert2.all.js')}}"></script>
 <script src="{{ url('js/app.js') }}"></script>
 <script src="{{ url('js/custom.js') }}"></script>
+<?php
+$urlResetPassword = url('password/email');
+$registerUser = url('register');
+?>
+<script>
+    $(document).ready(function () {
+        $('#submitEmailReset').submit(function (e) {
+            e.preventDefault();
+            let EmailValue = $('#resetEmail').val();
+            console.log(EmailValue);
+            $.ajaxSetup(
+                {
+                    'headers': {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+            $.ajax({
+                url: '{{$urlResetPassword}}',
+                type: 'POST',
+                data: 'email=' + EmailValue,
+                success: function (data) {
+
+                    console.log(data.responseJSON);
+
+
+                },
+
+                error: function (data) {
+
+                    var res = data.responseJSON;
+                    let messageError = res.errors.email;
+                    let CreateDiv = document.createElement('div');
+                    CreateDiv.classList = "resetPassword";
+                    let TextError = document.createTextNode(messageError);
+
+                    CreateDiv.append(TextError);
+                    let getElementReset = document.getElementById('sendResetEmail');
+
+                    getElementReset.insertBefore(CreateDiv, getElementReset.childNodes[3]);
+
+
+                }
+            });
+        })
+    });
+
+
+</script>
+
+
+
+
+
 </body>
 </html>

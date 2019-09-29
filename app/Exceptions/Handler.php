@@ -64,6 +64,7 @@ class Handler extends ExceptionHandler
                 'message' => 'شما اجازه دسترسی ندارید',
                 'status' => 'error'
             ]], 401)
-            : redirect()->guest($exception->redirectTo() ?? route('login'));
+            : redirect()->guest($exception->redirectTo() ?? view('welcome'));
     }
+
 }

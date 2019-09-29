@@ -8,27 +8,49 @@
 body{
     font-family: IRANSans, serif;
     direction: rtl;
-    background: linear-gradient(to right, #f7f8f8, #78bba899)
+     background: linear-gradient(to right, #185a9d, #43cea2);
+}
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
 }
 .header{
-    background: linear-gradient(to right, #4d459661, #b7b7bbe0, #f9e0e09e);
-     margin-bottom: 20px;
+      margin-bottom: 20px;
     height: 66px;
-    box-shadow: 1px 1px 4px 2px #757575;
-}
-.header p{
+ }
+.header p {
     display: flex;
     align-items: center;
     margin-bottom: 0;
     margin-right: 17px;
     color: white;
+    letter-spacing: 1px;
+    font-size: 17pt;
+    filter: drop-shadow(1px 3px 4px black);
 }
+.resetPassword{
+    display: flex;
+    font-size: 12px;
+    color: white;
+    background: tomato;
+    border-radius: 6px;
+    width: 60%;
+    padding: 5px 13px 5px 5px;
+}
+
 .btn-custom{
     background: #02b3e4;
     color: white;
-    height: 47px;
-    font-size: 15pt;
-    width: 129px;
+    height: 54px;
+    font-size: 17pt;
+    width: 146px;
     position: relative;
     box-shadow: 1px 1px 11px 2px #efe4e4;
     bottom: 56px;
@@ -42,9 +64,9 @@ body{
 .btn-custom-login{
     background: #02b3e4;
     color: white;
-    height: 47px;
-    font-size: 15pt;
-    width: 129px;
+    height: 54px;
+    font-size: 17pt;
+    width: 146px;
      box-shadow: 1px 1px 11px 2px #efe4e4;
      border: 1px solid#fff;
     transition: all 500ms;
@@ -134,19 +156,18 @@ li:has(  active) {
 
 .boxStyle{
     background: #ffffff;
-    border-radius: 19px 17px 19px 19px;
+
 }
 /*
 form material
 */
 
 .detail{
-    border-top-left-radius: 19px;
-    border-bottom-left-radius: 19px;
+
     background-image: url("../img/social.svg");
     background: #d9a7c7;
     background: -webkit-linear-gradient(to bottom, #e5cdcd, #d3dee41f); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #e5cdcd, #d3dee41f);
+    background: linear-gradient(to bottom, #eb3b5b1c, #d3dee41f);
     height: 500px;
 }
 .detailImg{
@@ -210,9 +231,7 @@ h1 {
     box-shadow: none;
     background-color: transparent;
 }
-.form-control:focus + label {
-    color: #26C6DA;
-}
+
 .form-control:focus + label, .form-control.has-value + label {
     font-size: 0.75rem;
     top: 0;
@@ -256,7 +275,8 @@ h1 {
     transform-origin: 0 0;
 }
 .form-control:focus ~ .line:after {
-    transform: scaleX(.5);
+    transform: scaleX(1);
+    background: #397fd8;
 }
 select.form-control:not([size]):not([multiple]) {
     height: 20px;
@@ -269,7 +289,7 @@ select.form-control:not([size]):not([multiple]) {
     margin-top: 0.25rem;
     font-size: 80%;
     position: absolute;
-    left: 10px;
+     text-align: right;
     color: #e3342f;
 }
 .was-validated .form-control:invalid, .form-control.is-invalid {
