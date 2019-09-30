@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Charts\PetrolChart;
 use Illuminate\Support\Facades\Hash;
+use Morilog\Jalali\Jalalian;
 
 
 class HomeController extends Controller
@@ -29,26 +30,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-         $fuelCar=fuelCar::orderBy('created_at', 'ASC')->where('user_id',auth()->id())->get();
 
-        $y=Carbon::now()->year;
-        $m=Carbon::now()->month;
-        $t =jdate('today')->format('t');
-        $date_list=array();
-        $petrol=array();
-        for ($i =1 ;$i<=$t;$i++){
-             $date = $y.'-'.$m.'-'.$i ;
+        $t = jdate('today')->format('t');
+        $y = Jalalian::forge('today')->format('%y');//98
+        $d = Jalalian::forge('today')->format('%d');//07
 
-            $date_list[$i] =$date;
 
-            $petrol[$i]=fuelCar::where(['created_at'=>$date,'user_id'=>auth()->user()->id])->get('currentPetrol');
+
+        $date_list = array();
+        $petrol = array();
+        for ($i = 1; $i <= $t; $i++) {
+            if ($i<10){
+                 $date =  $y.' '.'0'.$i  ;
+            }else{
+                $date =  $y.' '.$i ;
+            }
+
+            $date_list[$i] = $date;
+
+            $petrol[$i] = fuelCar::where(['date' => $date, 'user_id' => auth()->user()->id])->sum('currentPetrol');
+
         }
 
-
-
-
-
-         return view('home',compact( 'fuelCar','date_list','petrol'));
+        return view('home', compact('date_list', 'petrol'));
 
     }
 }

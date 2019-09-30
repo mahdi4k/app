@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Morilog\Jalali\Jalalian;
 
 class fuelCarSeeder extends Seeder
 {
@@ -22,7 +23,8 @@ class fuelCarSeeder extends Seeder
                 'currentKilo'=>$faker->randomNumber(6),
                 'paymentFuel'=>$faker->randomNumber(3),
                 'fuelImage'=>$faker->image(),
-                'created_at' => \Carbon\Carbon::today()->toDateString()
+                'time' =>  time(),
+                'date' =>jdate(today())->format('%y %d')
 
             ]);
         }

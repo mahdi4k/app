@@ -29,7 +29,11 @@ body {
     background-color: white;
     font-family: IRANSansMed, serif;
 }
-
+.logoutBtn{
+    margin-right: 24px;
+    font-size: 17pt;
+    color: tomato;
+}
 .btn-custom {
     background: #02b3e4;
     color: white !important;
@@ -51,6 +55,7 @@ body {
 
 .panelSide p {
     font-size: 17pt;
+    color: #758080;
     padding-right: 10px;
     padding-top: 25px;
     font-family: iransansBold;
@@ -60,7 +65,7 @@ body {
 
 .panelSide ul li {
     border: none;
-    line-height: 86px;
+     margin-bottom: 45px;
     padding-top: 0;
     padding-bottom: 0;
     display: inline-block;
@@ -89,6 +94,15 @@ body {
     margin-left: 10px;
     font-size: 15pt;
     transition: all .2s;
+    color: #ffffff;
+    filter: drop-shadow(2px 5px 9px skyblue);
+}
+.card sub{
+    display: flex;
+    margin-bottom: 18px;
+    margin-top: 18px;
+    text-align: center;
+    justify-content: center;
 }
 
 /*card*/
@@ -96,6 +110,7 @@ body {
 .card-custom {
     box-shadow: 1px 1px 14px 3px #d7dcdc52;
     border-radius: 8px;
+
 }
 
 .card-custom a {
@@ -131,6 +146,18 @@ body {
 @media (min-width: 1600px) {
     .card {
         width: 30rem !important;
-        margin-top: 50px;
+        margin-top: 50px !important;
+    }
+    .card-custom {
+        box-shadow: 1px 1px 14px 3px #d7dcdc52;
+        border-radius: 8px;
+
+    }
+    #container{
+        width: 466px !important;
+        height: 427px !important;
+    }
+    .panelSide ul{
+        margin-top: 100px !important;
     }
 }
