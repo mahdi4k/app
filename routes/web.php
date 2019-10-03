@@ -11,15 +11,25 @@
 |
 */
 
+use App\car;
+use App\fuelCar;
+use Morilog\Jalali\Jalalian;
 
-Route::get('/', function () {
-    return view('welcome') ;
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
-
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
- Auth::routes();
+Auth::routes();
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
- Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/panel', 'HomeController@index')->name('home');
 
+Route::middleware('auth')->group(function () {
+
+    Route::get('/Cars', 'CarController@index')->name('cars');
+    Route::get('/fuelCar', 'FuelCarController@index')->name('cars');
+
+});

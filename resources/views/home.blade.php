@@ -17,7 +17,7 @@
 
                 <ul class="list-group-flush pr-2 mt-3">
                     <li class="list-group-item "><i class="fa fa-home  "></i><a href="#">خانه</a></li>
-                    <li class="list-group-item "><i class="fa fa-car  " aria-hidden="true"></i><a href="">ماشین های
+                    <li class="list-group-item "><i class="fa fa-car  " aria-hidden="true"></i><a href="{{route('cars')}}">ماشین های
                             شما</a></li>
                     <li class="list-group-item "><i class="fa fa-tachometer  " aria-hidden="true"></i><a href="#">مدیریت
                             سوخت ماشین</a></li>
@@ -32,14 +32,16 @@
                 <div class="d-inline-flex justify-content-around w-100  ">
                     <div class="card  mt-3 mr-5 border-0" style="width: 18rem;">
                         <div class="card-body card-custom">
-                            <img src="{{url('img/car.svg')}}">
+                            <img  src="{{url('img/car.svg')}}">
                             <h6 style="color: #7b7a65;margin-top: 10px;" class="card-title text-center">ماشین های
                                 شما</h6>
                             <div class="cars w-100">
-                                <a href="#">دنا</a>
-                                <a href="#">سمند</a>
+                                @foreach ($carName as $item)
+                            <a href="#">{{$item->name}}</a>
+                                @endforeach
+
                                 <span>...</span>
-                                <a class="btn btn-custom mr-2" href="#">مشاهده همه</a>
+                                <a class="btn btn-custom mr-2" href="{{url('/Cars')}}">مشاهده همه</a>
                             </div>
                         </div>
                     </div>
@@ -90,20 +92,15 @@ $date = '';
 $petro = '';
 
 //month get
-foreach ($date_list as $key => $value) {
-    $withMonth = $value;
-    $date .= "'$withMonth',";
 
-}
+ $date ="'" .implode( "', '", $date_list)."'";
+
 //petrol get
 
-foreach ($petrol as $item) {
-
-    $petro .= $item . ',';
-}
 
 
 ?>
+
 @section('script')
     <script>
         Highcharts.chart('container', {
@@ -115,32 +112,22 @@ foreach ($petrol as $item) {
             },
 
             xAxis: {
-                categories: [ {!! $date !!}]
+                categories: [  {!! $date !!} ]
             },
             yAxis: {
                 title: {
                     text: 'مصرف این ماه'
                 }
             },
-            tooltip: {
-                useHTML: true,
-                formatter: function () {
-                    var s = '<p style="font-family: iransansLight; text-align: right;"><b>' + this.x + '</b>';
 
-                    $.each(this.points, function () {
-                        s += '<br/>' + 'مصرف' + ': ' +
-                            this.y + 'لیتر';
-                    });
-
-                    return s + '</p>';
-                },
-                shared: true
+            series: [
+               @foreach($petrol as $item)
+                {
+                name: '{{ $item->name }}',
+                data: [ {{implode($item->petrols,',')}}]
             },
-
-            series: [{
-                name: '{{jdate('today')->format(' %B  ')}}',
-                data: [<?= $petro ?>]
-            }]
+                @endforeach
+            ]
         });
     </script>
 @endsection

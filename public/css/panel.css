@@ -29,6 +29,9 @@ body {
     background-color: white;
     font-family: IRANSansMed, serif;
 }
+.w-85{
+    width: 85%;
+}
 .logoutBtn{
     margin-right: 24px;
     font-size: 17pt;
@@ -107,6 +110,19 @@ body {
 
 /*card*/
 
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+      background-color: unset !important;
+    background-clip: border-box;
+     border:unset !important;
+    border-radius: 0.25rem;
+}
+
+
 .card-custom {
     box-shadow: 1px 1px 14px 3px #d7dcdc52;
     border-radius: 8px;
@@ -136,6 +152,15 @@ body {
     text-decoration: none;
     border: none;
 }
+.carDetail{
+    padding: 10px;
+    margin: 10px 10px 25px 10px;
+    border-radius: 7px;
+    display: list-item;
+    box-shadow: 1px 1px 5px 1px #cdd2d169;
+    list-style: none;
+    color: #4e555b
+ }
 .cars a:hover{
     color: tomato;
     transform: translate3d(0px, -2px, 2px);
