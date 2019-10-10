@@ -15,7 +15,7 @@ class fuelCarSeeder extends Seeder
     public function run(Faker\Generator $faker)
     {
         for ($i = 0; $i < 5; $i++) {
-            DB::table('fuel_cars')->insert([
+            DB::table('fuels')->insert([
                 'user_id' => $faker->numberBetween(1, 5),
                 'car_id' => $faker->numberBetween(1, 5),
                 'fuelTank'=>$faker->randomNumber(2),
@@ -24,7 +24,7 @@ class fuelCarSeeder extends Seeder
                 'paymentFuel'=>$faker->randomNumber(3),
                 'fuelImage'=>$faker->image(),
                 'time' =>  time(),
-                'date' =>jdate(today())->format('%y %d')
+                'date' => $faker->dateTimeBetween( '-6 months','now')
 
             ]);
         }

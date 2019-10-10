@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use App\car;
 use App\fuelCar;
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Morilog\Jalali\Jalalian;
-
 
 class HomeController extends Controller
 {
@@ -23,16 +18,17 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
 
-         $carName = car::where('user_id', auth()->user()->id)->get('name');
-         $petrol =fuelCar::petrol();
-         $date_list =fuelCar::month();
-
-
+        $carName = car::where('user_id', auth()->user()->id)->get('name');
+        $petrol =fuelCar::petrol();
+        $date_list =fuelCar::month();
         return view('home', compact('date_list', 'petrol', 'carName'));
-
     }
 }

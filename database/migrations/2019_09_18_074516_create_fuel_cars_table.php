@@ -13,7 +13,7 @@ class CreateFuelCarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fuel_cars', function (Blueprint $table) {
+        Schema::create('fuels', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->integer('fuelTank');
             $table->integer('currentPetrol');
@@ -28,6 +28,11 @@ class CreateFuelCarsTable extends Migration
             $table->text('date');
             $table->integer('time');
         });
+        Schema::create('car_fuel', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+             $table->integer('fuel_id');
+             $table->integer('car_id');
+         });
     }
 
     /**
@@ -37,6 +42,7 @@ class CreateFuelCarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fuel_cars');
+        Schema::dropIfExists('fuels');
+        Schema::dropIfExists('car_fuel');
     }
 }

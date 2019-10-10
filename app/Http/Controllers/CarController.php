@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\car;
+use App\fuelCar;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -31,7 +34,7 @@ class CarController extends Controller
         $Cars = Auth::user()->getCars()->get();
       //$Cars =car::where('user_id',$this->userId)->get();
 
-      return view('sections.cars',compact('Cars'));
+      return view('sections.car.all',compact('Cars'));
     }
 
     /**
@@ -52,7 +55,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -61,9 +64,16 @@ class CarController extends Controller
      * @param  \App\car  $car
      * @return \Illuminate\Http\Response
      */
-    public function show(car $car)
+    public function show(car $Car)
     {
-        //
+
+            $month = 12;
+            $fuel = fuelCar::selectRaw(' monthname(date) month ,sum(currentpetrol) sumpetrol')->where('car_id',$Car->id)->where('date','>',Carbon::now()
+            ->subMonth(6))->groupBy("month")->orderBy('date')->pluck('sumpetrol') ;
+           $finalFuel = $this->Checkcount($fuel,$month);
+            $month = fuelCar::month();
+
+        return view('sections.car.show',compact('finalFuel','month'));
     }
 
     /**
@@ -98,5 +108,13 @@ class CarController extends Controller
     public function destroy(car $car)
     {
         //
+    }
+
+    private function Checkcount($count, int $month)
+    {
+        for ($i = 0 ; $i<$month ; $i ++){
+            $new[$i]=empty($count[$i]) ? 0 :$count[$i];
+        }
+        return array_reverse($new);
     }
 }

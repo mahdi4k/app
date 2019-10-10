@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class car extends Model
 {
+
      protected $fillable = ['name','brand','engineVolume','yearMake','carTag',
          'chassisNumber','carsNote','currentKilo','BuckVolume','percentVolume','userType'];
 
@@ -14,7 +15,7 @@ class car extends Model
      }
     public function fuelCars(){
 
-        return $this->hasOne(fuelCar::class,'car_id');
+        return $this->belongsToMany(fuelCar::class,'car_fuel','car_id','fuel_id');
 
     }
 }

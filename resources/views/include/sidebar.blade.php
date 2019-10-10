@@ -1,23 +1,28 @@
-<div class="col-md-3 panelSide h-100">
+<div id="sidebar" class="col-md-3 panelSide h-100">
     <div class="mr-4">
         <img style="opacity: .5;" alt="car management" src="{{url('img/download.jpg')}}">
         <p>مدیریت ماشین</p>
-        <a class="logoutBtn" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        <span   id="sidebarCollapse" class="  sidebarCollapse">
+            <i class="cplapceIcon fa  fa-align-right"></i>
+         </span>
+
     </div>
-    <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-column align-items-center position-relative">
+
         <img width="50" alt="user" src="{{url('img/profile.svg')}}">
+        <a class="logoutBtn" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         <p>{{Auth::user()->name}}</p>
     </div>
 
     <ul class="list-group-flush pr-2 mt-3">
-        <li class="list-group-item "><i class="fa fa-home  "></i><a href="{{url('panel')}}">خانه</a></li>
-        <li class="list-group-item "><i class="fa fa-car  " aria-hidden="true"></i><a href="">ماشین های
-                شما</a></li>
-        <li class="list-group-item "><i class="fa fa-tachometer  " aria-hidden="true"></i><a href="#">مدیریت
-                سوخت ماشین</a></li>
-        <li class="list-group-item "><i class="fa fa-wrench  " aria-hidden="true"></i><a href="#">تعمیرات
-                ماشین</a></li>
-        <li class="list-group-item "><i class="fa fa-money  " aria-hidden="true"></i><a href="#">هزینه های
-                دیگر</a></li>
+        <li class="list-group-item "><a href="{{url('panel')}}"><i class="fa fa-home  "></i><span class="collapseText">خانه</span></a></li>
+        <li class="list-group-item "><a href=""><i class="fa fa-car  " aria-hidden="true"></i><span class="collapseText">ماشین های
+                شما</span></a></li>
+        <li class="list-group-item "><a href="#"><i class="fa fa-tachometer  " aria-hidden="true"></i><span class="collapseText">مدیریت
+                سوخت ماشین</span></a></li>
+        <li class="list-group-item "><a href="#"><i class="fa fa-wrench  " aria-hidden="true"></i><span class="collapseText">تعمیرات
+                ماشین</span></a></li>
+        <li class="list-group-item "><a href="#"><i class="fa fa-money  " aria-hidden="true"></i><span class="collapseText">هزینه های
+                دیگر</span></a></li>
     </ul>
 </div>

@@ -15,7 +15,7 @@
     font-style: normal;
     src: url(../fonts/ttf/IRANSansWeb_Light.ttf);
 }
-
+/*global style */
 html {
     height: 100%;
     text-decoration: none;
@@ -29,13 +29,26 @@ body {
     background-color: white;
     font-family: IRANSansMed, serif;
 }
+.borderBottom {
+    border-bottom: 2px dashed skyblue;
+    padding-bottom: 6px;
+    border-bottom: 2px dashed skyblue;
+    font-family: iransansLight, serif;
+}
 .w-85{
     width: 85%;
 }
 .logoutBtn{
-    margin-right: 24px;
-    font-size: 17pt;
+
+    font-size: 14pt;
     color: tomato;
+    position: absolute;
+    top: 28px;
+    margin-right: 32px;
+    transition: all 200s;
+}
+.logoutBtn:hover i{
+    color: #66CDAA !important;
 }
 .btn-custom {
     background: #02b3e4;
@@ -55,6 +68,7 @@ body {
 .panelSide {
     border-left: 1px solid #eaeaea;
 }
+
 
 .panelSide p {
     font-size: 17pt;
@@ -126,7 +140,7 @@ body {
 .card-custom {
     box-shadow: 1px 1px 14px 3px #d7dcdc52;
     border-radius: 8px;
-
+    transition: all .2s;
 }
 
 .card-custom a {
@@ -159,12 +173,79 @@ body {
     display: list-item;
     box-shadow: 1px 1px 5px 1px #cdd2d169;
     list-style: none;
-    color: #4e555b
- }
+    color: black;
+    font-size: 14pt;
+  }
+.carDetail-span{
+    font-size: 10pt;
+    color: #686868;
+
+}
 .cars a:hover{
     color: tomato;
     transform: translate3d(0px, -2px, 2px);
 }
+/*panel side collapsing */
+#sidebar {
+    min-width: 320px;
+    max-width: 320px;
+
+    color: #fff;
+    transition: all 0.3s;
+}
+.sidebarCollapse{
+    color:  tomato;
+    font-size: 14pt;
+    position: relative;
+    right: 33px;
+    bottom: 23px;
+    transition: all  200ms;
+    cursor: pointer;
+}
+.sidebarCollapse:hover{
+    color:mediumaquamarine;
+    transform: scale(2.5);
+
+}
+#sidebar.active {
+    min-width: 120px;
+    max-width: 120px;
+    text-align: center;
+}
+#sidebar.active img{
+    width: 46px;
+    margin-top: 15px;
+}
+#sidebar.active p{
+    font-size: 10px;
+}
+#sidebar.active .mr-4{
+    margin-right: 0 !important;
+}
+#sidebar.active .sidebarCollapse{
+right: unset !important;
+}
+#sidebar.active .collapseText{
+    display: none;
+}
+#sidebar.active.panelSide ul li i   {
+    color: #7b50ff;
+    transition: all 200ms;
+    padding: 5px;
+}
+#sidebar.active.panelSide ul li i:hover{
+    color: tomato;
+
+}
+.addBoxShadow{
+    box-shadow: 1px 2px 8px 4px #4341d280;
+    transform: scale(1.1);
+    background: cornsilk;
+}
+#sidebar.active .col-md-9{
+    min-width: 91%;
+}
+/*end side collapsing*/
 .highcharts-root{
     font-family: iransansLight !important;
 }
@@ -186,3 +267,5 @@ body {
         margin-top: 100px !important;
     }
 }
+
+
