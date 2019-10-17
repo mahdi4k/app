@@ -30,10 +30,7 @@ class UserController extends Controller
 {
     public function login(Request $request)
     {
-        User::find('1')->update([
-            'email'=>'mahdi@yahoo.com',
-            'password'=>bcrypt('12345678')
-        ]);
+
         // Validation Data
         $validData = $this->validate($request, [
            'email' => 'required|exists:users',

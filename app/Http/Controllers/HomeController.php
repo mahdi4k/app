@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\car;
 use App\fuelCar;
+use App\repairCar;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $carName = car::where('user_id', auth()->user()->id)->get('name');
+        $carName = car::with('repair')->where('user_id', auth()->user()->id)->get(['id','name','slug']);
         $petrol =fuelCar::petrol();
         $date_list =fuelCar::month();
         return view('home', compact('date_list', 'petrol', 'carName'));

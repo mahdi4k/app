@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $('#responsiveWith').toggleClass('col-md-10 mr-5');
+
  });
 });
 

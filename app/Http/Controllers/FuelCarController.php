@@ -29,8 +29,7 @@ class FuelCarController extends Controller
     public function index()
     {
         $fuelCar = car::with('fuelCars')->where('user_id', $this->userId)->get();
-        $month = fuelCar::month();
-        $petrol = fuelCar::petrol();
+
 
          return view('sections.fuel', compact('fuelCar', 'petrol'));
     }

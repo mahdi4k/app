@@ -29,6 +29,52 @@ body {
     background-color: white;
     font-family: IRANSansMed, serif;
 }
+ /*alert pulse*/
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    100% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    50% {
+        -webkit-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    100% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+}
+
+.faa-pulse.animated,
+.faa-pulse.animated-hover:hover,
+.faa-parent.animated-hover:hover > .faa-pulse {
+    -webkit-animation: pulse 2s linear infinite;
+    animation: pulse 2s linear infinite;
+}
+
+/*end alert pulse*/
 .borderBottom {
     border-bottom: 2px dashed skyblue;
     padding-bottom: 6px;
@@ -73,7 +119,6 @@ body {
 .panelSide p {
     font-size: 17pt;
     color: #758080;
-    padding-right: 10px;
     padding-top: 25px;
     font-family: iransansBold;
     padding-bottom: 12px;
@@ -97,6 +142,8 @@ body {
     transition: all .2s;
     padding-left: 25px;
     white-space: normal;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .panelSide ul li a:hover {
@@ -112,7 +159,7 @@ body {
     font-size: 15pt;
     transition: all .2s;
     color: #ffffff;
-    filter: drop-shadow(2px 5px 9px skyblue);
+    filter: drop-shadow(1px 1px 5px rgba(113, 169, 161, 0.48));
 }
 .card sub{
     display: flex;
@@ -140,8 +187,15 @@ body {
 .card-custom {
     box-shadow: 1px 1px 14px 3px #d7dcdc52;
     border-radius: 8px;
-    transition: all .2s;
+    transition: all .4s;
+    margin-bottom: 20px;
 }
+.card-custom:hover{
+    box-shadow: 1px 1px 14px 14px #d7dcdc52;
+    transform: translate3d(0px, -2px, 0px);
+}
+
+
 
 .card-custom a {
     text-align: center;
@@ -157,7 +211,7 @@ body {
 }
 
 .cars a {
-    padding: 5px;
+    padding: 6px;
     color: #4e555b;
     box-shadow: 1px 1px 14px 3px #d7dcdc52;
     border-radius: 9px;
@@ -187,24 +241,25 @@ body {
 }
 /*panel side collapsing */
 #sidebar {
-    min-width: 320px;
-    max-width: 320px;
+
 
     color: #fff;
     transition: all 0.3s;
 }
 .sidebarCollapse{
-    color:  tomato;
+    color: tomato;
     font-size: 14pt;
-    position: relative;
-    right: 33px;
-    bottom: 23px;
-    transition: all  200ms;
+    transition: all 200ms;
     cursor: pointer;
+    display: table;
+    float: left;
+    position: relative;
+    bottom: 100px;
 }
+
 .sidebarCollapse:hover{
     color:mediumaquamarine;
-    transform: scale(2.5);
+    transform: scale(1.1);
 
 }
 #sidebar.active {
@@ -247,7 +302,7 @@ right: unset !important;
 }
 /*end side collapsing*/
 .highcharts-root{
-    font-family: iransansLight !important;
+    font-family: iransansLight, serif !important;
 }
 @media (min-width: 1600px) {
     .card {

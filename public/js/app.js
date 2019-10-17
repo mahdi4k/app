@@ -1840,6 +1840,8 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1849,24 +1851,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['labels', 'values'],
   mounted: function mounted() {
+    var _ref;
+
     var ctx = this.$refs.fuelChart.getContext('2d');
     var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(ctx, {
       type: 'line',
       data: {
         labels: this.labels,
-        datasets: [{
-          label: '# of Votes',
+        datasets: [(_ref = {
+          borderColor: "#80b6f4",
+          pointBorderColor: "#80b6f4",
+          pointBackgroundColor: "#80b6f4",
+          pointHoverBackgroundColor: "#80b6f4",
+          pointHoverBorderColor: "#80b6f4",
+          pointBorderWidth: 6,
+          pointHoverRadius: 6,
+          pointHoverBorderWidth: 1,
+          label: 'میزان مصرف سوخت ',
           data: this.values,
-          backgroundColor: ['rgb(83, 82, 237 , .5)'],
-          borderColor: ['#0fbcf9'],
-          borderWidth: 1
-        }]
+          backgroundColor: ['rgb(83, 82, 237 , .5)']
+        }, _defineProperty(_ref, "borderColor", ['#0fbcf9']), _defineProperty(_ref, "borderWidth", 1), _ref)]
       },
       options: {
+        legend: {
+          display: true,
+          position: 'top',
+          fontColor: 'red',
+          labels: {
+            fontFamily: "iransansLight"
+          }
+        },
         scales: {
           yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'لیتر',
+              fontFamily: "iransansLight",
+              fontSize: "15"
+            },
             ticks: {
-              beginAtZero: true
+              fontFamily: "iransansLight"
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              zeroLineColor: "transparent"
+            },
+            ticks: {
+              padding: 10,
+              fontColor: "rgba(0,0,0,1)",
+              fontFamily: "iransansLight"
             }
           }]
         }
@@ -69468,7 +69502,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("canvas", {
     ref: "fuelChart",
-    attrs: { width: "400", height: "400" }
+    attrs: { width: "400", height: "200" }
   })
 }
 var staticRenderFns = []

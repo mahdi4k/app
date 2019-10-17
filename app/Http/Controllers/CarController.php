@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class CarController extends Controller
 {
 
-     protected $userId;
+    protected $userId;
     public function __construct()
     {
     $this->middleware(function (Request $request,$next){
@@ -61,19 +61,21 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\car  $car
+     * @param  \App\car  $Car
      * @return \Illuminate\Http\Response
      */
-    public function show(car $Car)
+    public function show(car $name)
     {
 
+            $fuelCar =fuelCar::where('car_id',$name->id)->where('user_id', $this->userId)->orderBy('date','DESC')->get();
             $month = 12;
-            $fuel = fuelCar::selectRaw(' monthname(date) month ,sum(currentpetrol) sumpetrol')->where('car_id',$Car->id)->where('date','>',Carbon::now()
+            $fuel = fuelCar::selectRaw(' monthname(date) month ,sum(currentpetrol) sumpetrol')->where('user_id',$this->userId)->where('car_id',$name->id)->where('date','>',Carbon::now()
             ->subMonth(6))->groupBy("month")->orderBy('date')->pluck('sumpetrol') ;
-           $finalFuel = $this->Checkcount($fuel,$month);
+            $finalFuel = $this->Checkcount($fuel,$month);
             $month = fuelCar::month();
+            $justName=$name->name;
+            return view('sections.car.show',compact('finalFuel','month','fuelCar','justName'));
 
-        return view('sections.car.show',compact('finalFuel','month'));
     }
 
     /**
@@ -113,7 +115,7 @@ class CarController extends Controller
     private function Checkcount($count, int $month)
     {
         for ($i = 0 ; $i<$month ; $i ++){
-            $new[$i]=empty($count[$i]) ? 0 :$count[$i];
+            $new[$i]=empty($count[$i]) ? 0 :$count[$i]  ;
         }
         return array_reverse($new);
     }

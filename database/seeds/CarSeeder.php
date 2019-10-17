@@ -18,6 +18,7 @@ class CarSeeder extends Seeder
             DB::table('cars')->insert([
                 'user_id' => $faker->numberBetween(1, 5),
                 'name' => $faker->name,
+                'slug' => $faker->slug,
                 'brand' => $faker->name,
                 'engineVolume' => $faker->randomNumber('5'),
                 'yearMake' => $faker->dateTime,
