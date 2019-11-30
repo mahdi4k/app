@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Alert;
 class LoginController extends Controller
 {
     /*
@@ -20,6 +20,20 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
+    /**
+     * over ride redirectPath
+     * @return string
+     */
+    public function redirectPath()
+        {
+            if (method_exists($this, 'redirectTo')) {
+
+                return $this->redirectTo();
+            }
+            Alert::success( 'با موفقیت وارد سایت شدید')->autoclose(4000)->persistent("حله");
+            return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        }
     /**
      * Where to redirect users after login.
      *
@@ -38,6 +52,6 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        return view('welcome');
+        return view('LoginRegister');
     }
 }

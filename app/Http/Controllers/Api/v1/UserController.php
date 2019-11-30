@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Resources\v1\User as UserResource;
 use App\User;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -32,18 +35,30 @@ class UserController extends Controller
     {
 
         // Validation Data
-        $validData = $this->validate($request, [
-           'email' => 'required|exists:users',
-           'password' => 'required'
+        $validData = Validator::make($request->all(), [
+            'email' => 'required|exists:users',
+            'password' => 'required|confirmed'
         ]);
-
+        if ($validData->fails()){
+            $failedRules = $validData->failed();
+            if(isset($failedRules['email']['required'])) {
+                return response()->json([
+                    'errors' => 'لطفا ایمیل خود را وارد کنید',
+                    'status' =>'12'
+                ]);
+            }
+            return response()->json([
+                'errors' => $validData->errors(),
+                'status' =>'12'
+            ]);
+        }
 
         // Check Login User
-        if(! auth()->attempt($validData)) {
+        if (!auth()->attempt($validData->validate())) {
             return response([
-                'data' => 'اطلاعات صحیح نیست',
-                'status' => 'error'
-            ],403);
+                'errors' => $validData->errors(),
+                'status' => '13'
+            ], 403);
         }
 
         return new UserResource(auth()->user());
@@ -52,23 +67,35 @@ class UserController extends Controller
     public function register(Request $request)
     {
         // Validation Data
-        $validData = $this->validate($request, [
+        $validData = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'age' => 'required'
         ],
-            ['email.unique'=>'ایمیل وارد شده از قبل ثبت شده است']
-            );
-        //create new user
-        $user = User::create([
-            'name' => $validData['name'],
-            'email' => $validData['email'],
-            'password' => bcrypt($validData['password']),
-            'age' =>$validData['age'],
-            'api_token'=>Str::random(60)
-        ]);
+            ['email.unique' => 'ایمیل وارد شده از قبل ثبت شده است']
+        );
 
-        return new UserResource($user);
+        if ($validData->fails()) {
+            return response()->json([
+                'errors'=>$validData->errors(),
+                'status'=>2
+            ] );
+        }else{
+         $user =   User::create([
+                'name' =>  $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password')),
+                'age' => $request->input('age'),
+                'api_token' => Str::random(60)
+            ]);
+            return new UserResource($user);
+        }
+
+
+        //create new user
+
+
     }
+
 }

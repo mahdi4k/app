@@ -63,7 +63,7 @@ class RepairCarController extends Controller
      */
     public function show(repairCar $slug)
     {
-
+        
         $carId = $slug->car_id;
         $car=car::find($carId);
         $allRepair =repairCar::where('car_id',$car->id)->where('user_id',$this->userId)->get();

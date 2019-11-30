@@ -28,8 +28,8 @@ class HomeController extends Controller
     {
 
         $carName = car::with('repair')->where('user_id', auth()->user()->id)->get(['id','name','slug']);
-        $petrol =fuelCar::petrol();
+
         $date_list =fuelCar::month();
-        return view('home', compact('date_list', 'petrol', 'carName'));
+        return view('home', compact('date_list', 'carName'));
     }
 }

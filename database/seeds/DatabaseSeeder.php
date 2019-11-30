@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
 
 
 
-//        $this->call(UserSeeder::class);
-//        $this->call(CarSeeder::class);
-//        $this->call(CarServiceSeeder::class);
-//        $this->call(otherCostsSeeder::class);
-//        $this->call(fuelCarSeeder::class);
-          $this->call(repairCarSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(CarSeeder::class);
+        $this->call(CarServiceSeeder::class);
+        $this->call(otherCostsSeeder::class);
+        $this->call(fuelCarSeeder::class);
+        $this->call(repairCarSeeder::class);
     }
 }

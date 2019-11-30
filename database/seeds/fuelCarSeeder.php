@@ -23,8 +23,7 @@ class fuelCarSeeder extends Seeder
                 'currentKilo'=>$faker->randomNumber(6),
                 'paymentFuel'=>$faker->randomNumber(3),
                 'fuelImage'=>$faker->image(),
-                'time' =>  time(),
-                'date' => $faker->dateTimeBetween( '-6 months','now')
+                'created_at' => $faker->dateTimeBetween( '-6 months','now')
 
             ]);
         }

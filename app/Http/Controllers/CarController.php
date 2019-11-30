@@ -67,10 +67,10 @@ class CarController extends Controller
     public function show(car $name)
     {
 
-            $fuelCar =fuelCar::where('car_id',$name->id)->where('user_id', $this->userId)->orderBy('date','DESC')->get();
+            $fuelCar =fuelCar::where('car_id',$name->id)->where('user_id', $this->userId)->orderBy('created_at','DESC')->get();
             $month = 12;
-            $fuel = fuelCar::selectRaw(' monthname(date) month ,sum(currentpetrol) sumpetrol')->where('user_id',$this->userId)->where('car_id',$name->id)->where('date','>',Carbon::now()
-            ->subMonth(6))->groupBy("month")->orderBy('date')->pluck('sumpetrol') ;
+            $fuel = fuelCar::selectRaw(' monthname(created_at) month ,sum(currentpetrol) sumpetrol')->where('user_id',$this->userId)->where('car_id',$name->id)->where('created_at','>',Carbon::now()
+            ->subMonth(6))->groupBy("month")->orderBy('created_at')->pluck('sumpetrol') ;
             $finalFuel = $this->Checkcount($fuel,$month);
             $month = fuelCar::month();
             $justName=$name->name;

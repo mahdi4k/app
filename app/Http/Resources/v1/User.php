@@ -18,7 +18,7 @@ class User extends Resource
             'name' => $this->name,
             'email' => $this->email,
             'api_token' => $this->api_token,
-            'message'=>'با موفقیت وارد سایت شدید'
+            'message'=>'با موفقیت وارد سایت شدید',
 
         ];
 
@@ -28,7 +28,8 @@ class User extends Resource
     public function with($request)
     {
         return[
-            'status'=>'success'
+            'status'=>'success',
+            'state' =>1
         ];
     }
 }

@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-;
-
 class RegisterController extends Controller
 {
     /*
@@ -51,13 +49,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:3'],
-            'age' => ['required'],
+        $validator = Validator::make($data, [
+            'register_name' => ['required', 'string', 'max:255'],
+            'register_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'register_password' => ['required', 'string', 'min:8'],
+
         ]);
+        $validator->setAttributeNames([
+            'register_name' => 'name',
+            'register_email' => 'email',
+            'register_password' => 'password',
+        ]);
+
+        return $validator;
     }
+
+
     public function showRegistrationForm()
     {
         return view('welcome');
@@ -70,11 +77,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        session()->flash('message', 'User successfully created.');
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name' => $data['register_name'],
+            'email' => $data['register_email'],
             'age' => $data['age'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['register_password']),
             'api_token' =>Str::random('60')
         ]);
     }

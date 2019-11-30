@@ -1,11 +1,8 @@
 $("#tile-1 .nav-tabs a").click(function (e) {
     var position = $(this).parent().position();
-     var width = $(this).parent().width() ;
+    var width = $(this).parent().width() ;
     var finalWidth = width - Number(150);
-     $("#tile-1 .slider").css({"left": +position.left + Number(78), "width": finalWidth,"bottom" : '5'});
-
-
-
+    $("#tile-1 .slider").css({"left": +position.left + Number(78), "width": finalWidth,"bottom" : '5'});
 
 });
 

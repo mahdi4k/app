@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'ایمیل وارد شده در سایت ثبت نشده است ',
+    'failed' => 'اطلاعات وارد شده اشتباه است لطفا دوباره تلاش کنید. ',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

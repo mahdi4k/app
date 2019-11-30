@@ -24,11 +24,13 @@ Route::prefix('v1')->namespace('Api\v1')->group(function (){
 
 
     Route::middleware('auth:api')->group(function (){
-        Route::get('/user',function (){
+        Route::post('/cars','CarController@index');
+        Route::post('/carsStore','CarController@store');
+        Route::post('/fuel','fuelController@store');
+        Route::get('/user',function () {
+                return auth()->user();
 
-            return auth()->user();
-
-        });
+            });
     });
 });
 

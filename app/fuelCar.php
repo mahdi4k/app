@@ -9,10 +9,11 @@ use Morilog\Jalali\Jalalian;
 class fuelCar extends Model
 {
     protected $table = 'fuels';
+
     protected $fillable = ['fuelTank', 'currentPetrol', 'currentKilo', 'paymentFuel', 'fuelNote', 'fuelImage'];
 
 
-    public static function petrol()
+    /*public static function petrol()
     {
         $petrol = array();
 
@@ -47,7 +48,7 @@ class fuelCar extends Model
         }
       return $benzin;
 
-    }
+    }*/
 
 
     public static function month()
@@ -78,9 +79,9 @@ class fuelCar extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function car()
+    /*public function car()
     {
         return $this->belongsToMany(car::class, 'car_fuel', 'fuel_id');
-    }
+    }*/
 
 }

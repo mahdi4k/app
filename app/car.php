@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class car extends Model
 {
 
-    use Sluggable;
 
      protected $fillable = ['name','brand','engineVolume','yearMake','carTag',
          'chassisNumber','carsNote','currentKilo','BuckVolume','percentVolume','userType','slug'];
@@ -16,11 +15,11 @@ class car extends Model
      public function user(){
          return $this->belongsTo(User::class);
      }
-    public function fuelCars(){
+    /* public function fuelCars(){
 
         return $this->belongsToMany(fuelCar::class,'car_fuel','car_id','fuel_id');
 
-    }
+    }*/
 
     /**
      * Return the sluggable configuration array for this model.
@@ -45,4 +44,7 @@ class car extends Model
     {
         return $this->hasMany(repairCar::class,'car_id');
     }
+
+
+
 }

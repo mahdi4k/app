@@ -67,8 +67,8 @@ input:-webkit-autofill {
     height: 54px;
     font-size: 17pt;
     width: 146px;
-     box-shadow: 1px 1px 11px 2px #efe4e4;
-     border: 1px solid#fff;
+    box-shadow: 1px 1px 11px 2px #efe4e4;
+    border: unset;
     transition: all 500ms;
 }
 .btn-custom-login:hover{
@@ -78,7 +78,7 @@ input:-webkit-autofill {
 #tile-1 .tab-pane
 {
     padding:15px;
-    height:80px;
+    height:auto;
 }
 #tile-1 .nav-tabs
 {
@@ -168,7 +168,7 @@ form material
     background: #d9a7c7;
     background: -webkit-linear-gradient(to bottom, #e5cdcd, #d3dee41f); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #eb3b5b1c, #d3dee41f);
-    height: 500px;
+    height: auto ;
 }
 .detailImg{
      width: 113px;
@@ -178,6 +178,14 @@ form material
     filter: drop-shadow(2px 4px 6px #636e72 );
     margin: 17px auto;
 
+}
+.detail img:nth-child(2){
+    position: absolute;
+    width: 79%;
+    opacity: .2;
+    left: 1px;
+    right: 31px;
+    text-align: center;
 }
 .wrapper {
     background-color: #eee;
@@ -311,7 +319,6 @@ select.form-control:not([size]):not([multiple]) {
     text-align: center;
     line-height: 1.9;
     margin-left: 23px;
-    margin-top: 10px;
 }
 .detailList li:before{
     content: "\f00c";
@@ -325,3 +332,24 @@ select.form-control:not([size]):not([multiple]) {
     color: white;
 
  }
+
+@media (max-width: 768px) {
+    .detailList li{
+         font-size: .9em;
+     }
+    .detail{
+        display: none;
+    }
+    .form-row .form-control + label{
+        left: unset !important;
+    }
+
+}
+@media (max-width: 460px) {
+    #tile-1 .nav-tabs {
+        width: auto;
+     }
+    .boxStyle{
+        width: 98%;
+    }
+}

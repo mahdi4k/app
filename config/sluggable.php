@@ -196,6 +196,6 @@ return [
      * Only set this to true if you understand the possible consequences.
      */
 
-    'onUpdate' => true,
+    'onUpdate' => false,
 
 ];

@@ -18,7 +18,7 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/', function () {
 
-        return view('welcome');
+        return view('LoginRegister');
 
     });
 });
@@ -28,7 +28,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
-Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function () {
     Route::get('/panel', 'HomeController@index')->name('home');
 
     Route::resource('Cars', 'CarController');
@@ -44,11 +44,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-/*Route::get('/qwer',function (){
-    $fuelCar =fuelCar::find('30');
-    return $fuelCar ;
+Route::get('/qwer',function (){
+    /*$fuelCar =fuelCar::find('30');
+    return $fuelCar ;*/
+    \App\User::find(1)->update([
+       'email'=>'mahdi@yahoo.com',
+       'password'=>bcrypt('12345678')
+    ]);
 });
-
+/*
 Route::get('/asd',function(){
     $fuelCar =car::with('fuelCars')->where('user_id',auth()->user()->id)->get();
 

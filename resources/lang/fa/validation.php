@@ -28,7 +28,7 @@ return array(
         "array"   => ":attribute باید بین :min و :max آیتم باشد.",
     ),
     "boolean"          => "The :attribute field must be true or false",
-    "confirmed"        => ":attribute با تاییدیه مطابقت ندارد.",
+    "confirmed"        => ":attribute با ایمیل مطابقت ندارد.",
     "date"             => ":attribute یک تاریخ معتبر نیست.",
     "date_format"      => ":attribute با الگوی :format مطاقبت ندارد.",
     "different"        => ":attribute و :other باید متفاوت باشند.",

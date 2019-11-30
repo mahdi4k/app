@@ -5,7 +5,11 @@
     @include('include.sidebar')
 
     <div id="responsiveWith" class="col-9">
-
+        @if(Session::has('flash_message'))
+            <div class="alert alert-success">
+                {{Session::get('flash_message')}}
+            </div>
+        @endif
         <div class="d-inline-flex justify-content-around w-100  ">
             <div class="card  mt-3 mr-5 border-0" style="width: 18rem;">
                 <div class="card-body card-custom">
@@ -19,7 +23,7 @@
                             @endforeach
                         @endif
                         <span>...</span>
-                        <a class="btn btn-custom mr-2" href="{{url('/Cars')}}">مشاهده همه</a>
+                        <a class="btn btn-custom mr-2 mt-1" href="{{url('/Cars')}}">مشاهده همه</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +59,7 @@
                                     @foreach( $item->repair as $value )
 
                                     @endforeach
-                                 <a href="{{route('repair.show',['slug'=>$item->slug])}}">{{$allcarName}}</a>
+                                 <a href="{{url('repair/'.$item->id  )}}">{{$allcarName}}</a>
                              @endforeach
                          @endif
                     </div>
